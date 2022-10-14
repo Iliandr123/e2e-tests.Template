@@ -1,0 +1,25 @@
+{
+  "name": "e2e-tests.template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "npx cypress run --env allure=true",
+    "cypress:open": "npx cypress open",
+    "allure:generate": "allure generate",
+    "allure:open": "allure open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.33.0",
+    "babel-eslint": "^10.1.0",
+    "cypress": "^10.10.0",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^27.1.1",
+    "eslint-plugin-jsx-a11y": "^6.6.1"
+  }
+}
