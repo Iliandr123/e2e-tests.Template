@@ -1,8 +1,12 @@
 {
-    "extends": ["airbnb-base"],
+    "extends": [
+        "plugin:cypress/recommended",
+        "airbnb-base"
+    ],
     "plugins": ["cypress"],
     "rules": {
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-        "no-undef": "off"
+        "no-undef": "off",
+        "function-paren-newline": "off"
     }
 }
