@@ -13,7 +13,7 @@ module.exports = defineConfig({
     viewportWidth: 1200,
     viewportHeight: 660,
     specPattern: 'cypress/e2e/**/*.cy.js',
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://tourmalinecore.github.io/React-Admin-Template',
     video: false,
     screenshotOnRunFailure: false,
     retries: {
