@@ -28,12 +28,11 @@ jobs:
                       cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
                       }}
             - name: Install Dependencies
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+              uses: actions/setup-node@v3
               with:
                   node-version: 16
-            - run: npm ci
-            - run: npm npx cypress cache list
+              run: npm ci
+              run: npm npx cypress cache list
             - name: Run Cypress
               continue-on-error: true
               run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
