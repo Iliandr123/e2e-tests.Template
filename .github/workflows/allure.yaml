@@ -27,9 +27,9 @@ jobs:
                   key: >-
                       cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
                       }}
-            - name: Install Cypress
+            - name: Install Dependencies
               run: |
-                  npx cypress install
+                  npx ci
                   npx cypress cache list
             - name: Run Cypress
               continue-on-error: true
