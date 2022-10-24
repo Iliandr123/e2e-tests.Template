@@ -4,7 +4,7 @@ const LOG_IN_BUTTON = 'Log In';
 
 export default class AuthView {
   static visit() {
-    cy.visit('/auth');
+    cy.visit('/');
     cy.contains('Sign Out').click(); // need remove after
   }
 
