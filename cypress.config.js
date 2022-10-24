@@ -6,15 +6,14 @@ module.exports = defineConfig({
   e2e: {
     reporter: 'cypress-qase-reporter',
     reporterOptions: {
-      apiToken: '0d34be7b8ca289973f1f955b5303c1f49b7cb844',
+      apiToken: 'c8a3108a147bf48449b7c1dd01466c1c9f61f90b',
       projectCode: 'INNCIRCLE',
-      runId: 1,
       logging: true,
     },
     viewportWidth: 1200,
     viewportHeight: 660,
     specPattern: 'cypress/e2e/**/*.cy.js',
-    baseUrl: 'https://tourmalinecore.github.io',
+    baseUrl: 'http://localhost:3000',
     video: false,
     screenshotOnRunFailure: false,
     retries: {

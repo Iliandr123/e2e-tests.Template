@@ -6,4 +6,4 @@ const existUser = {
   password,
 };
 
-module.exports = { existUser };
+export default { existUser };

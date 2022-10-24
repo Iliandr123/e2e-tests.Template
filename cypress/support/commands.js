@@ -21,7 +21,7 @@ Cypress.Commands.add('auth', () => {
 
   AuthView.tapLogIn();
 });
-// Cypress.Commands.add('login', (email, password) => { ... })
+
 //
 //
 // -- This is a child command --
