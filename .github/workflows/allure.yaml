@@ -28,10 +28,10 @@ jobs:
                       cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
                       }}
             - name: Install Dependencies
-              uses: actions/setup-node@v3
+            - uses: actions/setup-node@v3
               with:
                   node-version: 16
-              run: |
+            - run: |
                   npm ci
                   npx cypress cache list
             - name: Run Cypress
