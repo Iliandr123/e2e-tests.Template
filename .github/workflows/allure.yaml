@@ -10,27 +10,27 @@ jobs:
         environment: DEV
         steps:
             - uses: actions/checkout@v2
-            - name: Use Node.js
-                - uses: actions/setup-node@v3
-                  with:
-                    node-version: 16
-            - name: Download Cypress
+            - uses: actions/setup-node@v3
+                with:
+                  node-version: 16
+            # - name: Download Cypress
             - uses: bahmutov/npm-install@v1
-              env:
-                  CYPRESS_INSTALL_BINARY: 0
+              # env:
+              #     CYPRESS_INSTALL_BINARY: 0
 
-            - name: Check Cypress cache
-              run: |
-                  npx cypress cache path
-                  npx cypress cache list
-            - name: restore / cache the binary
-              id: cache-cypress
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cache/Cypress
-                  key: >-
-                      cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
-                      }}
+            # - name: Check Cypress cache
+            #   run: |
+            #       npx cypress cache path
+            #       npx cypress cache list
+            # - name: restore / cache the binary
+            #   id: cache-cypress
+            #   uses: actions/cache@v1
+            #   with:
+            #       path: ~/.cache/Cypress
+            #       key: >-
+            #           cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
+            #           }}
+            
             # - name: Install Dependencies
             #   continue-on-error: true
             #   run: npm ci
