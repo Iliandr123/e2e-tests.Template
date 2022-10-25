@@ -1,4 +1,4 @@
-name: allure-report
+name: Node CI
 
 on:
     push:
@@ -10,8 +10,12 @@ jobs:
         environment: DEV
         steps:
             - uses: actions/checkout@v2
+            - name: Use Node.js
+                - uses: actions/setup-node@v3
+                  with:
+                    node-version: 16
             - name: Download Cypress
-              uses: bahmutov/npm-install@v1
+            - uses: bahmutov/npm-install@v1
               env:
                   CYPRESS_INSTALL_BINARY: 0
 
@@ -27,16 +31,11 @@ jobs:
                   key: >-
                       cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
                       }}
-            - name: Use Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-              # run: npm npx cypress cache list
-            - name: Install Dependencies
-              continue-on-error: true
-              run: npm i
+            # - name: Install Dependencies
+            #   continue-on-error: true
+            #   run: npm ci
 
-            - name: Run Cypress
+            - name: Run Cypress tests
               run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
 
 
