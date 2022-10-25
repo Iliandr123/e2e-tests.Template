@@ -11,8 +11,8 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v3
-                with:
-                  node-version: 16
+              with:
+                node-version: 16
             # - name: Download Cypress
             - uses: bahmutov/npm-install@v1
               # env:
@@ -30,7 +30,7 @@ jobs:
             #       key: >-
             #           cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
             #           }}
-            
+
             # - name: Install Dependencies
             #   continue-on-error: true
             #   run: npm ci
