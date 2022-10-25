@@ -46,7 +46,7 @@ jobs:
                 browser: chrome
                 headed: true
                 env: 
-              run:  |
+            - run:  |
                   node ./helpers/qase-pre-script.js 
                   set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} 
                   ./helpers/qase-post-script.js
