@@ -40,7 +40,10 @@ jobs:
             #   continue-on-error: true
             #   run: npm ci
             - name: Run Cypress tests
-              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
+              run:  |
+              node ./helpers/qase-pre-script.js 
+              npm run cy:run:ci node 
+              ./helpers/qase-post-script.js
 
 
             # - name: Get Allure history
