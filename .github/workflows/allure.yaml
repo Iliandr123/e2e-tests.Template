@@ -17,8 +17,9 @@ jobs:
               with:
                 node-version: 16
 
-            - name: Install dependencies
-              uses: bahmutov/npm-install@v1
+            # - name: Install dependencies
+            #   uses: bahmutov/npm-install@v1
+            - run: npm install
               # env:
               #     CYPRESS_INSTALL_BINARY: 0
 
@@ -27,19 +28,19 @@ jobs:
               #     npx cypress cache path
               #     npx cypress cache list
 
-            - name: restore / cache the binary
-              id: cache-cypress
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cache/Cypress
-                  key: >-
-                      cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
-                      }}
+            # - name: restore / cache the binary
+            #   id: cache-cypress
+            #   uses: actions/cache@v1
+            #   with:
+            #       path: ~/.cache/Cypress
+            #       key: >-
+            #           cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
+            #           }}
 
             # - name: Install Dependencies
             #   continue-on-error: true
             #   run: npm ci
-            - name: Run Cypress tests
+            - name: Run test scripts
               run:  |
                   node ./helpers/qase-pre-script.js 
                   npm run cy:run:ci node 
