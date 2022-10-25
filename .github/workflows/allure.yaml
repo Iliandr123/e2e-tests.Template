@@ -34,7 +34,7 @@ jobs:
               # run: npm npx cypress cache list
             - name: Install Dependencies
               continue-on-error: true
-              run: npm ci
+              run: npm i
 
             - name: Run Cypress
               run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
