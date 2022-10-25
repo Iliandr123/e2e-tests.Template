@@ -5,7 +5,7 @@ on:
         branches:
             - main
 jobs:
-    generate-report:
+    test-run-results:
         runs-on: ubuntu-latest
         environment: DEV
         steps:
@@ -40,7 +40,7 @@ jobs:
             #   continue-on-error: true
             #   run: npm ci
             - name: Run Cypress tests
-              run: npm run cy:run:ci
+              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
 
 
             # - name: Get Allure history
