@@ -14,7 +14,7 @@
     "test:allure": "npm-run-all -c pretest cy:run posttest",
     "allure:generate": "allure generate",
     "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true",
-    "cy:run:ci": "set QASE_REPORT=1&&npx cypress run"
+    "cy:run:ci": "set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }}"
   },
   "author": "",
   "license": "ISC",
