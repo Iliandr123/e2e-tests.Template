@@ -15,11 +15,12 @@ async function isAllTestCasesPassed(res) {
 }
 
 async function completeLastTestRun() {
-  const res = await QaseApiHelper.getAllTestRuns();
-  const lastTestRunId = await getLastCreatedTestRun(res.result.entities)
+  const response = await QaseApiHelper.getAllTestRuns()
+    .then((res) => res.result.entities);
+  const lastTestRunId = await getLastCreatedTestRun(response)
     .then((testRun) => testRun.id);
 
-  if (isAllTestCasesPassed(res.result.entities)) {
+  if (isAllTestCasesPassed(response) === true) {
     await QaseApiHelper.completeTestRun(lastTestRunId);
   }
 }

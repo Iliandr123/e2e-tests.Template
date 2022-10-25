@@ -1,78 +1,36 @@
-name: Node CI
+name: allure-report
 
 on:
     push:
         branches:
             - main
 jobs:
-    test-run-results:
+    generate-report:
         runs-on: ubuntu-latest
         environment: DEV
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+            - uses: actions/checkout@v2
+            - name: Download Cypress
+              uses: bahmutov/npm-install@v1
+              env:
+                  CYPRESS_INSTALL_BINARY: 0
 
-            # - name: Setup Node 16.0
-            #   uses: actions/setup-node@v3
-            #   with:
-            #     node-version: 16
-
-            # - name: Install dependencies
-            #   uses: bahmutov/npm-install@v1
-            - run: npm install
-              # env:
-              #     CYPRESS_INSTALL_BINARY: 0
-
-            # - name: Check Cypress cache
-              # run: |
-              #     npx cypress cache path
-              #     npx cypress cache list
-
-            # - name: restore / cache the binary
-            #   id: cache-cypress
-            #   uses: actions/cache@v1
-            #   with:
-            #       path: ~/.cache/Cypress
-            #       key: >-
-            #           cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
-            #           }}
-
-            # - name: Install Dependencies
-            #   continue-on-error: true
-            #   run: npm ci
-            - name: Run test scripts
-              uses: cypress-io/github-action@v4
+            - name: Check Cypress cache
+              run: |
+                  npx cypress cache path
+                  npx cypress cache list
+            - name: restore / cache the binary
+              id: cache-cypress
+              uses: actions/cache@v1
               with:
-                browser: chrome
-                headed: true
-                env: 
-            - run:  |
-                  node ./helpers/qase-pre-script.js 
-                  set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} 
-                  ./helpers/qase-post-script.js
-
-
-            # - name: Get Allure history
-            #   uses: actions/checkout@v2
-            #   if: always()
-            #   continue-on-error: true
-            #   with:
-            #       ref: allure
-            #       path: allure
-
-            # - name: Generate Allure Report
-            #   uses: simple-elf/allure-report-action@master
-            #   if: always()
-            #   with:
-            #       allure_results: allure-results
-            #       gh_pages: allure
-            #       allure_history: allure-history
-            #       keep_reports: 20
-
-            # - name: Deploy report to Github Pages
-            #   if: always()
-            #   uses: peaceiris/actions-gh-pages@v3
-            #   with:
-            #       github_token: ${{ secrets.GITHUB_TOKEN }}
-            #       publish_branch: allure
-            #       publish_dir: allure-history 
+                  path: ~/.cache/Cypress
+                  key: >-
+                      cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
+                      }}
+            - name: Install Cypress
+              run: |
+                  npx cypress install
+                  npx cypress cache list
+            - name: Run Cypress
+              continue-on-error: true
+              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env allure=true,userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
