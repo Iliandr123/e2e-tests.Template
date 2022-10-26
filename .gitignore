@@ -1,3 +1,4 @@
 node_modules
-allure_report
-allure-results
+
+# mochawesome reports
+cypress/reports/

@@ -1,14 +1,20 @@
 const { defineConfig } = require('cypress');
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
+const mochawesomeWriter = require('cypress-mochawesome-reporter/plugin');
 
 module.exports = defineConfig({
 
   e2e: {
-    reporter: 'cypress-qase-reporter',
+    reporter: 'cypress-multi-reporters',
     reporterOptions: {
-      apiToken: 'c8a3108a147bf48449b7c1dd01466c1c9f61f90b',
-      projectCode: 'INNCIRCLE',
-      logging: true,
+      reporterEnabled: 'cypress-mochawesome-reporter, cypress-qase-reporter',
+      cypressMochawesomeReporterReporterOptions: {
+        charts: true,
+      },
+      cypressQaseReporterReporterOptions: {
+        apiToken: 'c8a3108a147bf48449b7c1dd01466c1c9f61f90b',
+        projectCode: 'INNCIRCLE',
+        logging: true,
+      },
     },
     viewportWidth: 1200,
     viewportHeight: 660,
@@ -21,7 +27,7 @@ module.exports = defineConfig({
       openMode: 0,
     },
     setupNodeEvents(on, config) {
-      allureWriter(on, config);
+      mochawesomeWriter(on, config);
       return config;
     },
   },

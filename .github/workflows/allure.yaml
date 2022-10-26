@@ -5,32 +5,44 @@ on:
         branches:
             - main
 jobs:
-    generate-report:
+    cypress-test:
+        name: Run on Chrome 106
         runs-on: ubuntu-latest
+        container: cypress/browsers:node16.17.0-chrome106
         environment: DEV
         steps:
             - uses: actions/checkout@v2
-            - name: Download Cypress
-              uses: bahmutov/npm-install@v1
-              env:
-                  CYPRESS_INSTALL_BINARY: 0
 
-            - name: Check Cypress cache
+            - name: Download Cypress
               run: |
-                  npx cypress cache path
-                  npx cypress cache list
-            - name: restore / cache the binary
-              id: cache-cypress
-              uses: actions/cache@v1
-              with:
-                  path: ~/.cache/Cypress
-                  key: >-
-                      cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
-                      }}
-            - name: Install Cypress
-              run: |
-                  npx cypress install
-                  npx cypress cache list
+                npm ci
+                ${npm bin}/cypress verify
+
+            # - name: Check Cypress cache
+            #   run: |
+            #       npx cypress cache path
+            #       npx cypress cache list
+
+            # - name: restore / cache the binary
+            #   id: cache-cypress
+            #   uses: actions/cache@v1
+            #   with:
+            #       path: ~/.cache/Cypress
+            #       key: >-
+            #           cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json')
+            #           }}
+
             - name: Run Cypress
-              continue-on-error: true
-              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env allure=true,userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
+              continue-on-error: false
+              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
+
+            - name: Copy test report
+              run: |
+                mkdir public
+                cp -r cypress/reports public/reports
+
+            - name: Deploy report to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./public
