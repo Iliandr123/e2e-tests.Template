@@ -41,7 +41,7 @@ jobs:
             - name: Copy test report
               run: |
                 mkdir public
-                cp -r cypress/reports public/reports
+                cp -r cypress/reports/html public/
 
             - name: Deploy report to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
