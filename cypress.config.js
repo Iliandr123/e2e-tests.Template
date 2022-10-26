@@ -6,15 +6,7 @@ module.exports = defineConfig({
   e2e: {
     reporter: 'cypress-multi-reporters',
     reporterOptions: {
-      reporterEnabled: 'cypress-mochawesome-reporter, cypress-qase-reporter',
-      cypressMochawesomeReporterReporterOptions: {
-        charts: true,
-      },
-      cypressQaseReporterReporterOptions: {
-        apiToken: 'c8a3108a147bf48449b7c1dd01466c1c9f61f90b',
-        projectCode: 'INNCIRCLE',
-        logging: true,
-      },
+      configFile: 'reporterOptions.json',
     },
     viewportWidth: 1200,
     viewportHeight: 660,

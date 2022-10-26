@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run && node ./helpers/qase-post-script.js",
+    "test": "node ./helpers/qase-pre-script.js && set QASE_REPORT=1&& set QASE_API_TOKEN=c8a3108a147bf48449b7c1dd01466c1c9f61f90b&&npx cypress run && node ./helpers/qase-post-script.js",
     "cy:open": "npx cypress open"
   },
   "author": "",
