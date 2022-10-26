@@ -6,4 +6,5 @@ const existUser = {
   password,
 };
 
-export default { existUser };
+// eslint-disable-next-line import/prefer-default-export
+export { existUser };
