@@ -34,7 +34,7 @@ jobs:
 
             - name: Run Cypress
               continue-on-error: true
-              run: node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} && node ./helpers/qase-post-script.js
+              run: node ./helpers/qase-pre-script.js && QASE_REPORT=1 npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }} --browser chrome && node ./helpers/qase-post-script.js
 
             - name: Copy test report
               run: |
