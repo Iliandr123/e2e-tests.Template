@@ -8,7 +8,9 @@ jobs:
     cypress-test:
         name: Run on Chrome 106
         runs-on: ubuntu-latest
-        container: cypress/browsers:node16.17.0-chrome106
+        container: 
+          image: cypress/browsers:node16.17.0-chrome106
+          options: --user 1001
         environment: DEV
         steps:
             - uses: actions/checkout@v2
