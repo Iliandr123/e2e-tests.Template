@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./helpers/qase-pre-script.js && set QASE_REPORT=1&&npx cypress run && node ./helpers/qase-post-script.js",
-    "cy:open": "npx cypress open",
-    "mocha:generate-report": "marge cypress/reports",
-    "cy:run:ci": "set QASE_REPORT=1&&npx cypress run --env userLogin=${{ secrets.USER_LOGIN }},userPassword=${{ secrets.USER_PASSWORD }}"
+    "cy:open": "npx cypress open"
   },
   "author": "",
   "license": "ISC",

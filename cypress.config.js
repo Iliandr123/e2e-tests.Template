@@ -28,7 +28,6 @@ module.exports = defineConfig({
     },
     setupNodeEvents(on, config) {
       mochawesomeWriter(on, config);
-      return config;
     },
   },
 });
