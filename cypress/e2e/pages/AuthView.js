@@ -1,6 +1,6 @@
 const INPUT_LOGIN = '#login';
 const INPUT_PASSWORD = '#password';
-const LOG_IN_BUTTON = 'Log In';
+const LOG_IN_BUTTON = 'Log Inn';
 
 export default class AuthView {
   static visit() {
