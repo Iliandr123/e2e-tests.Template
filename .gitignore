@@ -1,5 +1,7 @@
 node_modules
 allure_report
 allure-results
-# mochawesome reports
+# report artifacts
 cypress/reports/
+cypress/screenshots/
+cypress/videos/

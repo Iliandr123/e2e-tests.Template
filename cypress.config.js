@@ -13,7 +13,6 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/**/*.cy.js',
     baseUrl: 'https://tourmalinecore.github.io/React-Admin-Template',
     video: false,
-    screenshotOnRunFailure: false,
     retries: {
       runMode: 1,
       openMode: 0,
